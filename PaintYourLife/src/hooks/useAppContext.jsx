@@ -5,7 +5,25 @@ const AppContext = createContext({});
 export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [messages, setMessages] = useState({});
+  const [favorites, setFavorites] = useState([]);
 
+  // Alternar obra nos favoritos
+  const toggleFavorite = (artwork) => {
+    setFavorites((prev) => {
+      const exists = prev.some((item) => item.id === artwork.id);
+      if (exists) {
+        return prev.filter((item) => item.id !== artwork.id);
+      }
+      return [...prev, artwork];
+    });
+  };
+
+  // Verificar se a obra está favoritada
+  const isFavorite = (id) => {
+    return favorites.some((item) => item.id === id);
+  };
+
+  // Funções do Carrinho
   const addToCart = (artwork) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === artwork.id);
@@ -58,6 +76,9 @@ export const AppProvider = ({ children }) => {
         getTotal,
         messages,
         sendMessage,
+        favorites,
+        toggleFavorite,
+        isFavorite,
       }}
     >
       {children}

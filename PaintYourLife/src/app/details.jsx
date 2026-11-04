@@ -3,66 +3,81 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, SafeAreaVi
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useApp } from '../hooks/useAppContext';
 import { ARTWORKS } from '../constants/mockData';
+import { COLORS } from '../constants/theme';
+import Header from '../components/Header';
 
 export default function DetailScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
-  const { addToCart } = useApp();
+  const { addToCart, toggleFavorite, isFavorite } = useApp();
 
   const artwork = ARTWORKS.find((item) => item.id === id) || ARTWORKS[0];
-  const similarArtworks = ARTWORKS.filter((item) => artwork.similarIds?.includes(item.id));
+  const favorited = isFavorite(artwork.id);
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Text style={styles.backText}>← Voltar</Text>
-        </TouchableOpacity>
-        
-        <Image source={{ uri: artwork.image }} style={styles.image} />
-        <View style={styles.content}>
-          <Text style={styles.title}>{artwork.title}</Text>
-          <Text style={styles.artist}>{artwork.artist}</Text>
-          <Text style={styles.specs}>{artwork.year} • {artwork.medium} • {artwork.dimensions}</Text>
-          
-          <Text style={styles.price}>R$ {artwork.price.toLocaleString()}</Text>
-          <Text style={styles.description}>{artwork.description}</Text>
+      <Header />
 
-          <TouchableOpacity 
-            style={styles.cartButton} 
-            onPress={() => {
-              addToCart(artwork);
-              router.push('/cart');
-            }}
-          >
-            <Text style={styles.cartButtonText}>Adicionar ao carrinho</Text>
-          </TouchableOpacity>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+        <View style={styles.contentGrid}>
+          {/* Imagem em Destaque */}
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: artwork.image }} style={styles.image} resizeMode="cover" />
+          </View>
 
-          <TouchableOpacity 
-            style={styles.chatButton}
-            onPress={() => router.push({ pathname: '/chat', params: { id: artwork.id } })}
-          >
-            <Text style={styles.chatButtonText}>Conversar com o autor sobre esta obra</Text>
-          </TouchableOpacity>
+          {/* Detalhes e Ações */}
+          <View style={styles.detailsContainer}>
+            <Text style={styles.title}>{artwork.title}</Text>
+            <Text style={styles.artist}>{artwork.artist}</Text>
+            <Text style={styles.price}>R$ {artwork.price.toLocaleString()}</Text>
 
-          {similarArtworks.length > 0 && (
-            <View style={styles.similarSection}>
-              <Text style={styles.similarTitle}>Obras semelhantes recomendadas</Text>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {similarArtworks.map((item) => (
-                  <TouchableOpacity
-                    key={item.id}
-                    style={styles.similarCard}
-                    onPress={() => router.push({ pathname: '/details', params: { id: item.id } })}
-                  >
-                    <Image source={{ uri: item.image }} style={styles.similarImage} />
-                    <Text style={styles.similarName} numberOfLines={1}>{item.title}</Text>
-                    <Text style={styles.similarPrice}>R$ {item.price}</Text>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
+            <Text style={styles.description}>{artwork.description}</Text>
+
+            {/* Tabela de Especificações */}
+            <View style={styles.specsTable}>
+              <View style={styles.specRow}>
+                <Text style={styles.specLabel}>Técnica</Text>
+                <Text style={styles.specValue}>{artwork.medium}</Text>
+              </View>
+              <View style={styles.specRow}>
+                <Text style={styles.specLabel}>Dimensões</Text>
+                <Text style={styles.specValue}>{artwork.dimensions}</Text>
+              </View>
+              <View style={styles.specRow}>
+                <Text style={styles.specLabel}>Ano</Text>
+                <Text style={styles.specValue}>{artwork.year}</Text>
+              </View>
             </View>
-          )}
+
+            {/* Botão Primário: Adicionar ao Carrinho */}
+            <TouchableOpacity 
+              style={styles.primaryBtn} 
+              onPress={() => {
+                addToCart(artwork);
+                router.push('/cart');
+              }}
+            >
+              <Text style={styles.primaryBtnText}>Adicionar ao carrinho</Text>
+            </TouchableOpacity>
+
+            {/* Botão Secundário: Alternar Favorito */}
+            <TouchableOpacity 
+              style={[styles.secondaryBtn, favorited && { borderColor: COLORS.primary }]}
+              onPress={() => toggleFavorite(artwork)}
+            >
+              <Text style={[styles.secondaryBtnText, favorited && { color: COLORS.primary }]}>
+                {favorited ? '♥ Favoritado' : '♡ Adicionar aos Favoritos'}
+              </Text>
+            </TouchableOpacity>
+
+            {/* Link para o Chat */}
+            <TouchableOpacity 
+              style={styles.chatBtn}
+              onPress={() => router.push({ pathname: '/chat', params: { id: artwork.id } })}
+            >
+              <Text style={styles.chatBtnText}>💬 Conversar com o autor sobre esta obra</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -70,24 +85,109 @@ export default function DetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FAF6F0' },
-  backButton: { padding: 16 },
-  backText: { fontSize: 16, fontWeight: 'bold', color: '#1A1A1A' },
-  image: { width: '100%', height: 350 },
-  content: { padding: 20 },
-  title: { fontSize: 26, fontWeight: 'bold', color: '#1A1A1A' },
-  artist: { fontSize: 16, color: '#666', marginBottom: 4 },
-  specs: { fontSize: 12, color: '#888', marginBottom: 16 },
-  price: { fontSize: 22, fontWeight: 'bold', color: '#1A1A1A', marginBottom: 16 },
-  description: { fontSize: 14, color: '#444', lineHeight: 22, marginBottom: 20 },
-  cartButton: { backgroundColor: '#1A1A1A', padding: 16, borderRadius: 30, alignItems: 'center', marginBottom: 10 },
-  cartButtonText: { color: '#FFF', fontWeight: 'bold' },
-  chatButton: { backgroundColor: 'transparent', borderWidth: 1, borderColor: '#1A1A1A', padding: 14, borderRadius: 30, alignItems: 'center' },
-  chatButtonText: { color: '#1A1A1A', fontWeight: 'bold' },
-  similarSection: { marginTop: 30 },
-  similarTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 12, color: '#1A1A1A' },
-  similarCard: { marginRight: 12, width: 120 },
-  similarImage: { width: 120, height: 120, borderRadius: 8 },
-  similarName: { color: '#1A1A1A', fontSize: 12, marginTop: 4, fontWeight: 'bold' },
-  similarPrice: { color: '#666', fontSize: 11 }
+  container: { 
+    flex: 1, 
+    backgroundColor: COLORS.background 
+  },
+  scrollContent: { 
+    padding: 20 
+  },
+  contentGrid: {
+    flexDirection: 'column',
+    gap: 20,
+  },
+  imageContainer: {
+    width: '100%',
+    height: 300,
+    backgroundColor: COLORS.cardBackground,
+    borderRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: COLORS.cardBorder,
+  },
+  image: { 
+    width: '100%', 
+    height: '100%' 
+  },
+  detailsContainer: {
+    flex: 1,
+  },
+  title: { 
+    fontSize: 26, 
+    fontWeight: 'bold', 
+    color: COLORS.textPrimary 
+  },
+  artist: { 
+    fontSize: 14, 
+    color: COLORS.textSecondary, 
+    marginTop: 4 
+  },
+  price: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    color: COLORS.textPrimary, 
+    marginVertical: 14 
+  },
+  description: { 
+    fontSize: 13, 
+    color: COLORS.textSecondary, 
+    lineHeight: 20, 
+    marginBottom: 20 
+  },
+  specsTable: {
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: COLORS.border,
+    paddingVertical: 10,
+    marginBottom: 24,
+  },
+  specRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    paddingVertical: 6 
+  },
+  specLabel: { 
+    color: COLORS.textSecondary, 
+    fontSize: 12 
+  },
+  specValue: { 
+    color: COLORS.textPrimary, 
+    fontSize: 12, 
+    fontWeight: '500' 
+  },
+  primaryBtn: {
+    backgroundColor: COLORS.primary,
+    paddingVertical: 14,
+    borderRadius: 24,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  primaryBtnText: { 
+    color: '#000', 
+    fontWeight: 'bold', 
+    fontSize: 14 
+  },
+  secondaryBtn: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    paddingVertical: 14,
+    borderRadius: 24,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  secondaryBtnText: { 
+    color: COLORS.textPrimary, 
+    fontWeight: 'bold', 
+    fontSize: 14 
+  },
+  chatBtn: {
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  chatBtnText: { 
+    color: COLORS.textSecondary, 
+    fontSize: 12, 
+    textDecorationLine: 'underline' 
+  },
 });
