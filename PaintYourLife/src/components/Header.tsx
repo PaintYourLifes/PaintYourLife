@@ -1,38 +1,78 @@
+
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/theme';
 
 interface HeaderProps {
   showBack?: boolean;
 }
 
-export default function Header({ showBack }: HeaderProps) {
+export default function Header({ showBack = false }: HeaderProps) {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
-        style={styles.logoContainer} 
-        onPress={() => router.push('/')}
-      >
-        <Text style={styles.logoIcon}>🎨</Text>
-        <Text style={styles.logoText}>Paint Your Life</Text>
-      </TouchableOpacity>
+      <View style={styles.leftSection}>
+        {showBack && (
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => router.back()}
+          >
+            <Ionicons name="arrow-back" size={22} color={COLORS.primary} />
+          </TouchableOpacity>
+        )}
+
+        <TouchableOpacity
+          style={styles.logoContainer}
+          onPress={() => router.push('/')}
+          activeOpacity={0.8}
+        >
+          <Ionicons
+            name="color-palette-outline"
+            size={25}
+            color={COLORS.primary}
+          />
+
+          <Text style={styles.logoText}>Paint Your Life</Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.iconsRow}>
-  <TouchableOpacity onPress={() => router.push('/catalog' as any)}>
-    <Text style={styles.icon}>🔍</Text>
-  </TouchableOpacity>
-  
-  <TouchableOpacity onPress={() => router.push('/favorites' as any)} style={styles.iconSpacing}>
-    <Text style={styles.icon}>♡</Text>
-  </TouchableOpacity>
-  
-  <TouchableOpacity onPress={() => router.push('/cart' as any)}>
-    <Text style={styles.icon}>🛍️</Text>
-  </TouchableOpacity>
-</View>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => router.push('/catalog' as any)}
+        >
+          <Ionicons
+            name="search-outline"
+            size={23}
+            color={COLORS.textPrimary}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => router.push('/favorites' as any)}
+        >
+          <Ionicons
+            name="heart-outline"
+            size={23}
+            color={COLORS.textPrimary}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => router.push('/cart' as any)}
+        >
+          <Ionicons
+            name="bag-handle-outline"
+            size={23}
+            color={COLORS.textPrimary}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -43,35 +83,35 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 14,
+    paddingVertical: 16,
     backgroundColor: COLORS.background,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
   },
-  logoContainer: {
+  leftSection: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  logoIcon: {
-    fontSize: 18,
-    marginRight: 8,
-    color: COLORS.primary,
+  backButton: {
+    marginRight: 12,
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   logoText: {
     color: COLORS.textPrimary,
     fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
+    marginLeft: 9,
   },
   iconsRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 17,
   },
-  icon: {
-    fontSize: 18,
-    color: COLORS.textPrimary,
-  },
-  iconSpacing: {
-    marginHorizontal: 16,
+  iconButton: {
+    padding: 4,
   },
 });

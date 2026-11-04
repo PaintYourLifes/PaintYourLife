@@ -1,14 +1,17 @@
+
 export const COLORS = {
-  background: '#090A0C',     // Fundo principal escuro
-  cardBackground: '#121418', // Fundo dos cards e contêineres
-  inputBackground: '#181A20',// Fundo de inputs e chips desativados
-  primary: '#E3B354',        // Dourado/Amarelo de destaque
-  primaryHover: '#D4A243',
-  textPrimary: '#FFFFFF',    // Texto principal
-  textSecondary: '#9EA3AE',  // Texto secundário/subtítulos
-  border: '#232730',         // Linhas divisórias e bordas
-  cardBorder: '#1E222B',
+  background: '#171614',
+  cardBackground: '#24211D',
+  inputBackground: '#302A23',
+  primary: '#B8955B',
+  primaryHover: '#D0AD75',
+  textPrimary: '#F3EFE7',
+  textSecondary: '#B7AA96',
+  border: '#40372D',
+  cardBorder: '#393127',
   white: '#FFFFFF',
+  success: '#84977A',
+  error: '#C78368',
 };
 
 export const FONTS = {

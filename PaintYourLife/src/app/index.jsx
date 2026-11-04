@@ -1,86 +1,253 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
+
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+
 import { ARTWORKS } from '../constants/mockData';
 import { COLORS } from '../constants/theme';
 import { useApp } from '../hooks/useAppContext';
 import Header from '../components/Header';
 
-export default function HomeScreen() {
+const featuredArtworks = [
+  {
+    id: 'banner1',
+    image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1400',
+  },
+  {
+    id: 'banner2',
+    image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=1400',
+  },
+  {
+    id: 'banner3',
+    image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1400',
+  },
+  {
+    id: 'banner4',
+    image: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1400',
+  },
+];
+
+export default function Home() {
   const router = useRouter();
   const { toggleFavorite, isFavorite } = useApp();
-  const heroArtwork = ARTWORKS[0];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroArtwork = featuredArtworks[currentSlide];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % featuredArtworks.length);
+  };
+
+  const previousSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? featuredArtworks.length - 1 : prev - 1
+    );
+  };
+
+  const formatPrice = (price) => {
+    return Number(price || 0).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.safeArea}>
       <Header />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        {/* Banner Hero */}
-        <View style={styles.heroContainer}>
-          <Image source={{ uri: heroArtwork.image }} style={styles.heroImage} resizeMode="cover" />
-          <View style={styles.heroOverlay} />
-          
-          <View style={styles.heroContent}>
-            <Text style={styles.heroTitle}>
-              Grandes obras{'\n'}para transformar{'\n'}seu espaço.
-            </Text>
-            <Text style={styles.heroSubtitle}>
-              Arte que inspira, emociona{'\n'}e dá vida aos seus ambientes.
-            </Text>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        <View style={styles.container}>
 
-            <TouchableOpacity 
-              style={styles.heroButton}
-              onPress={() => router.push('/catalog')}
+          {/* BANNER PRINCIPAL */}
+          <View style={styles.heroContainer}>
+            <Image
+              source={{ uri: heroArtwork.image }}
+              style={styles.heroImage}
+              resizeMode="cover"
+            />
+
+            <View style={styles.heroOverlay} />
+
+            <View style={styles.heroContent}>
+              <Text style={styles.heroSubtitle}>
+                ARTE PARA SUA VIDA
+              </Text>
+
+              <Text style={styles.heroTitle}>
+                Grandes obras para transformar seu espaço.
+              </Text>
+
+              <Text style={styles.heroDescription}>
+                Descubra pinturas únicas e encontre a arte perfeita para você.
+              </Text>
+
+              <TouchableOpacity
+                style={styles.heroButton}
+                onPress={() => router.push('/catalog')}
+              >
+                <Text style={styles.heroButtonText}>
+                  Explorar galeria
+                </Text>
+
+                <Ionicons
+                  name="arrow-forward"
+                  size={18}
+                  color="#090A0C"
+                />
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={[styles.arrowButton, styles.leftArrow]}
+              onPress={previousSlide}
             >
-              <Text style={styles.heroButtonText}>Explorar obras  →</Text>
+              <Ionicons
+                name="chevron-back"
+                size={22}
+                color="#FFFFFF"
+              />
             </TouchableOpacity>
-          </View>
 
-          <View style={styles.sliderControls}>
-            <TouchableOpacity style={styles.sliderArrow}>
-              <Text style={styles.arrowText}>‹</Text>
+            <TouchableOpacity
+              style={[styles.arrowButton, styles.rightArrow]}
+              onPress={nextSlide}
+            >
+              <Ionicons
+                name="chevron-forward"
+                size={22}
+                color="#FFFFFF"
+              />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.sliderArrow}>
-              <Text style={styles.arrowText}>›</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
 
-        {/* Carrossel Mais Buscados */}
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Mais buscados</Text>
-
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.carousel}>
-            {ARTWORKS.map((item) => {
-              const favorited = isFavorite(item.id);
-              return (
+            <View style={styles.indicators}>
+              {featuredArtworks.map((item, index) => (
                 <TouchableOpacity
                   key={item.id}
-                  style={styles.card}
-                  onPress={() => router.push({ pathname: '/details', params: { id: item.id } })}
+                  onPress={() => setCurrentSlide(index)}
+                  style={[
+                    styles.indicator,
+                    currentSlide === index && styles.activeIndicator,
+                  ]}
+                />
+              ))}
+            </View>
+          </View>
+
+          {/* MAIS BUSCADOS */}
+          <View style={styles.sectionHeader}>
+            <View>
+              <Text style={styles.sectionSubtitle}>
+                NOSSA SELEÇÃO
+              </Text>
+
+              <Text style={styles.sectionTitle}>
+                Mais buscados
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              onPress={() => router.push('/catalog')}
+              style={styles.seeAllButton}
+            >
+              <Text style={styles.seeAllText}>
+                Ver todos
+              </Text>
+
+              <Ionicons
+                name="arrow-forward"
+                size={16}
+                color={COLORS.primary}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* CARROSSEL DE OBRAS */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.artworksList}
+          >
+            {ARTWORKS.map((item) => (
+              <View key={item.id} style={styles.artworkCard}>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                  onPress={() =>
+                    router.push({
+                      pathname: '/details',
+                      params: { id: String(item.id) },
+                    })
+                  }
                 >
-                  <View style={styles.imageWrapper}>
-                    <Image source={{ uri: item.image }} style={styles.cardImage} />
-                    <TouchableOpacity 
-                      style={styles.favoriteBadge}
-                      onPress={(e) => {
-                        e.stopPropagation();
-                        toggleFavorite(item);
-                      }}
-                    >
-                      <Text style={[styles.favoriteIcon, favorited && { color: COLORS.primary }]}>
-                        {favorited ? '♥' : '♡'}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                  <Text style={styles.cardTitle} numberOfLines={1}>{item.title}</Text>
-                  <Text style={styles.cardArtist} numberOfLines={1}>{item.artist}</Text>
-                  <Text style={styles.cardPrice}>R$ {item.price.toLocaleString()}</Text>
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.artworkImage}
+                    resizeMode="cover"
+                  />
                 </TouchableOpacity>
-              );
-            })}
+
+                <TouchableOpacity
+                  style={styles.favoriteButton}
+                  onPress={() => toggleFavorite(item)}
+                >
+                  <Ionicons
+                    name={isFavorite(item.id) ? 'heart' : 'heart-outline'}
+                    size={21}
+                    color={isFavorite(item.id) ? '#E35D6A' : '#FFFFFF'}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() =>
+                    router.push({
+                      pathname: '/details',
+                      params: { id: String(item.id) },
+                    })
+                  }
+                >
+                  <Text style={styles.artworkTitle} numberOfLines={1}>
+                    {item.title}
+                  </Text>
+
+                  <Text style={styles.artworkArtist} numberOfLines={1}>
+                    {item.artist}
+                  </Text>
+
+                  <Text style={styles.artworkPrice}>
+                    {formatPrice(item.price)}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
           </ScrollView>
+
+          {/* RODAPÉ */}
+          <View style={styles.footer}>
+            <Text style={styles.footerLogo}>
+              PAINT YOUR LIFE
+            </Text>
+
+            <Text style={styles.footerText}>
+              Arte que transforma ambientes e inspira histórias.
+            </Text>
+
+            <Text style={styles.copyright}>
+              © 2026 Paint Your Life. Todos os direitos reservados.
+            </Text>
+          </View>
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -88,133 +255,243 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  scrollContent: { paddingBottom: 30 },
+  safeArea: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+  },
+
+  scrollContent: {
+    paddingBottom: 30,
+  },
+
+  container: {
+    flex: 1,
+    paddingHorizontal: 22,
+  },
+
   heroContainer: {
-    height: 380,
+    height: 440,
     width: '100%',
+    borderRadius: 18,
+    overflow: 'hidden',
+    marginTop: 18,
     position: 'relative',
     justifyContent: 'center',
   },
+
   heroImage: {
     ...StyleSheet.absoluteFillObject,
     width: '100%',
     height: '100%',
   },
+
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    backgroundColor: 'rgba(0,0,0,0.55)',
   },
+
   heroContent: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 35,
+    maxWidth: 480,
     zIndex: 2,
   },
-  heroTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
-    lineHeight: 34,
-    marginBottom: 8,
-  },
+
   heroSubtitle: {
-    fontSize: 13,
-    color: COLORS.textSecondary,
-    lineHeight: 18,
-    marginBottom: 20,
+    color: COLORS.primary,
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 3,
+    marginBottom: 18,
   },
+
+  heroTitle: {
+    color: '#FFFFFF',
+    fontSize: 36,
+    fontWeight: '700',
+    lineHeight: 44,
+    marginBottom: 15,
+  },
+
+  heroDescription: {
+    color: '#E0E0E0',
+    fontSize: 15,
+    lineHeight: 23,
+    marginBottom: 25,
+  },
+
   heroButton: {
     backgroundColor: COLORS.primary,
+    paddingVertical: 14,
     paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 24,
-    alignSelf: 'flex-start',
-  },
-  heroButtonText: {
-    color: '#000',
-    fontWeight: 'bold',
-    fontSize: 13,
-  },
-  sliderControls: {
-    position: 'absolute',
-    bottom: 16,
-    right: 20,
+    borderRadius: 6,
     flexDirection: 'row',
-    zIndex: 2,
-  },
-  sliderArrow: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 8,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    alignSelf: 'flex-start',
+    gap: 12,
   },
-  arrowText: {
-    color: COLORS.textPrimary,
-    fontSize: 18,
-    lineHeight: 20,
+
+  heroButtonText: {
+    color: '#090A0C',
+    fontWeight: '700',
+    fontSize: 14,
   },
-  sectionContainer: {
-    marginTop: 24,
-    paddingLeft: 20,
+
+  arrowButton: {
+    position: 'absolute',
+    top: '48%',
+    zIndex: 5,
+    width: 38,
+    height: 38,
+    borderRadius: 30,
+    backgroundColor: 'rgba(0,0,0,0.55)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
-    marginBottom: 16,
+
+  leftArrow: {
+    left: 12,
   },
-  carousel: {
+
+  rightArrow: {
+    right: 12,
+  },
+
+  indicators: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
     flexDirection: 'row',
+    gap: 9,
+    zIndex: 5,
   },
-  card: {
-    width: 140,
+
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+  },
+
+  activeIndicator: {
+    width: 24,
+    backgroundColor: COLORS.primary,
+  },
+
+  sectionHeader: {
+    marginTop: 48,
+    marginBottom: 22,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+
+  sectionSubtitle: {
+    color: COLORS.primary,
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 2,
+    marginBottom: 8,
+  },
+
+  sectionTitle: {
+    color: COLORS.textPrimary,
+    fontSize: 27,
+    fontWeight: '700',
+  },
+
+  seeAllButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+    paddingBottom: 4,
+  },
+
+  seeAllText: {
+    color: COLORS.primary,
+    fontSize: 13,
+    fontWeight: '600',
+  },
+
+  artworksList: {
+    gap: 17,
+    paddingBottom: 10,
+  },
+
+  artworkCard: {
+    width: 210,
     backgroundColor: COLORS.cardBackground,
-    borderRadius: 8,
-    padding: 8,
-    marginRight: 12,
+    borderRadius: 12,
+    padding: 10,
     borderWidth: 1,
     borderColor: COLORS.cardBorder,
-  },
-  imageWrapper: {
     position: 'relative',
   },
-  cardImage: {
+
+  artworkImage: {
     width: '100%',
-    height: 110,
-    borderRadius: 6,
+    height: 190,
+    borderRadius: 8,
+    backgroundColor: COLORS.inputBackground,
   },
-  favoriteBadge: {
+
+  favoriteButton: {
     position: 'absolute',
-    top: 6,
-    right: 6,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    borderRadius: 12,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
+    top: 17,
+    right: 17,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    width: 35,
+    height: 35,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
   },
-  favoriteIcon: {
+
+  artworkTitle: {
     color: COLORS.textPrimary,
-    fontSize: 12,
+    fontSize: 15,
+    fontWeight: '700',
+    marginTop: 13,
   },
-  cardTitle: {
-    color: COLORS.textPrimary,
-    fontWeight: 'bold',
-    marginTop: 8,
-    fontSize: 12,
-  },
-  cardArtist: {
+
+  artworkArtist: {
     color: COLORS.textSecondary,
-    fontSize: 10,
-    marginTop: 2,
-  },
-  cardPrice: {
-    color: COLORS.textPrimary,
-    fontWeight: 'bold',
-    marginTop: 6,
     fontSize: 12,
+    marginTop: 5,
+  },
+
+  artworkPrice: {
+    color: COLORS.primary,
+    fontSize: 15,
+    fontWeight: '700',
+    marginTop: 10,
+    marginBottom: 5,
+  },
+
+  footer: {
+    alignItems: 'center',
+    paddingTop: 40,
+    paddingBottom: 10,
+  },
+
+  footerLogo: {
+    color: COLORS.primary,
+    fontSize: 16,
+    fontWeight: '800',
+    letterSpacing: 3,
+  },
+
+  footerText: {
+    color: COLORS.textSecondary,
+    fontSize: 12,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+
+  copyright: {
+    color: '#666A73',
+    fontSize: 10,
+    marginTop: 18,
+    textAlign: 'center',
   },
 });
