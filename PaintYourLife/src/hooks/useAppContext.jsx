@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext } from 'react';
 
 const AppContext = createContext({});
@@ -69,7 +68,6 @@ export const AppProvider = ({ children }) => {
           const newQty = item.quantity + delta;
           return newQty > 0 ? { ...item, quantity: newQty } : item;
         }
-
         return item;
       })
     );
