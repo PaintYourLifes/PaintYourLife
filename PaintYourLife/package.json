@@ -4,10 +4,7 @@
   "main": "expo-router/entry",
   "dependencies": {
     "@expo/ui": "~58.0.21",
-<<<<<<< HEAD
-=======
     "@expo/vector-icons": "^15.0.2",
->>>>>>> b06addd48ea9da684a1bc84f3bf3d9cf7ee1bb7c
     "expo": "~58.0.16",
     "expo-constants": "~58.0.12",
     "expo-device": "~58.0.5",
