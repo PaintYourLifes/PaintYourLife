@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -31,15 +30,18 @@ export default function DetailScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <Header />
+
         <View style={styles.notFound}>
           <Ionicons
             name="image-outline"
             size={60}
-            color={COLORS.primary}
+            color="#D4AF6E"
           />
+
           <Text style={styles.notFoundTitle}>
             Obra não encontrada
           </Text>
+
           <TouchableOpacity
             style={styles.primaryBtn}
             onPress={() => router.push('/catalog')}
@@ -55,6 +57,11 @@ export default function DetailScreen() {
 
   const favorited = isFavorite(artwork.id);
 
+  const imageSource =
+    typeof artwork.image === 'string'
+      ? { uri: artwork.image }
+      : artwork.image;
+
   const formatPrice = (value) =>
     value.toLocaleString('pt-BR', {
       style: 'currency',
@@ -69,13 +76,15 @@ export default function DetailScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        <Text style={styles.subtitle}>COLEÇÃO EXCLUSIVA</Text>
+        <Text style={styles.subtitle}>
+          COLEÇÃO EXCLUSIVA
+        </Text>
 
         <View style={styles.imageContainer}>
           <Image
-            source={{ uri: artwork.image }}
+            source={imageSource}
             style={styles.image}
-            resizeMode="contain"
+            resizeMode="cover"
           />
 
           <TouchableOpacity
@@ -86,7 +95,7 @@ export default function DetailScreen() {
             <Ionicons
               name={favorited ? 'heart' : 'heart-outline'}
               size={23}
-              color={favorited ? '#C78368' : COLORS.textPrimary}
+              color={favorited ? '#D4AF6E' : '#F4EFE5'}
             />
           </TouchableOpacity>
         </View>
@@ -128,10 +137,13 @@ export default function DetailScreen() {
                 <Ionicons
                   name="color-palette-outline"
                   size={17}
-                  color={COLORS.primary}
+                  color="#D4AF6E"
                 />
-                <Text style={styles.specLabel}>Técnica</Text>
+                <Text style={styles.specLabel}>
+                  Técnica
+                </Text>
               </View>
+
               <Text style={styles.specValue}>
                 {artwork.medium}
               </Text>
@@ -142,10 +154,13 @@ export default function DetailScreen() {
                 <Ionicons
                   name="resize-outline"
                   size={17}
-                  color={COLORS.primary}
+                  color="#D4AF6E"
                 />
-                <Text style={styles.specLabel}>Dimensões</Text>
+                <Text style={styles.specLabel}>
+                  Dimensões
+                </Text>
               </View>
+
               <Text style={styles.specValue}>
                 {artwork.dimensions}
               </Text>
@@ -156,10 +171,13 @@ export default function DetailScreen() {
                 <Ionicons
                   name="calendar-outline"
                   size={17}
-                  color={COLORS.primary}
+                  color="#D4AF6E"
                 />
-                <Text style={styles.specLabel}>Ano</Text>
+                <Text style={styles.specLabel}>
+                  Ano
+                </Text>
               </View>
+
               <Text style={styles.specValue}>
                 {artwork.year}
               </Text>
@@ -170,10 +188,13 @@ export default function DetailScreen() {
                 <Ionicons
                   name="earth-outline"
                   size={17}
-                  color={COLORS.primary}
+                  color="#D4AF6E"
                 />
-                <Text style={styles.specLabel}>Região</Text>
+                <Text style={styles.specLabel}>
+                  Região
+                </Text>
               </View>
+
               <Text style={styles.specValue}>
                 {artwork.region}
               </Text>
@@ -193,6 +214,7 @@ export default function DetailScreen() {
               size={20}
               color="#171614"
             />
+
             <Text style={styles.primaryBtnText}>
               Adicionar ao carrinho
             </Text>
@@ -209,12 +231,13 @@ export default function DetailScreen() {
             <Ionicons
               name={favorited ? 'heart' : 'heart-outline'}
               size={20}
-              color={favorited ? COLORS.primary : COLORS.textPrimary}
+              color={favorited ? '#D4AF6E' : '#F4EFE5'}
             />
+
             <Text
               style={[
                 styles.secondaryBtnText,
-                favorited && { color: COLORS.primary },
+                favorited && { color: '#D4AF6E' },
               ]}
             >
               {favorited
@@ -236,15 +259,17 @@ export default function DetailScreen() {
             <Ionicons
               name="chatbubble-ellipses-outline"
               size={19}
-              color={COLORS.primary}
+              color="#D4AF6E"
             />
+
             <Text style={styles.chatBtnText}>
               Conversar com o artista
             </Text>
+
             <Ionicons
               name="arrow-forward"
               size={16}
-              color={COLORS.primary}
+              color="#D4AF6E"
             />
           </TouchableOpacity>
         </View>
@@ -256,176 +281,234 @@ export default function DetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: '#171614',
   },
+
   scrollContent: {
     padding: 20,
-    paddingBottom: 40,
+    paddingBottom: 45,
   },
+
   subtitle: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 10,
-    letterSpacing: 3,
-    fontWeight: '600',
-    marginBottom: 15,
+    letterSpacing: 3.5,
+    fontFamily: 'Georgia',
+    marginBottom: 18,
   },
+
   imageContainer: {
     width: '100%',
-    height: 340,
-    backgroundColor: COLORS.cardBackground,
-    borderRadius: 14,
+    height: 420,
+    backgroundColor: '#211F1B',
+    borderRadius: 5,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: COLORS.cardBorder,
-    marginBottom: 25,
+    borderColor: 'rgba(212,175,110,0.28)',
+    marginBottom: 28,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 7,
   },
+
   image: {
     width: '100%',
     height: '100%',
   },
+
   imageFavorite: {
     position: 'absolute',
-    top: 15,
-    right: 15,
-    backgroundColor: '#171614',
+    top: 14,
+    right: 14,
+    backgroundColor: 'rgba(23,22,20,0.92)',
     width: 43,
     height: 43,
-    borderRadius: 22,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: 'rgba(212,175,110,0.35)',
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   detailsContainer: {
     flex: 1,
   },
+
   category: {
-    color: COLORS.primary,
-    fontSize: 12,
-    letterSpacing: 1.5,
+    color: '#D4AF6E',
+    fontSize: 11,
+    letterSpacing: 2,
     textTransform: 'uppercase',
-    marginBottom: 9,
+    fontFamily: 'Georgia',
+    marginBottom: 10,
   },
+
   title: {
-    fontSize: 29,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
-    marginBottom: 7,
+    fontSize: 30,
+    fontFamily: 'Georgia',
+    color: '#F4EFE5',
+    marginBottom: 9,
+    lineHeight: 38,
   },
+
   artist: {
-    fontSize: 15,
-    color: COLORS.textSecondary,
+    fontSize: 14,
+    fontFamily: 'Georgia',
+    fontStyle: 'italic',
+    color: '#BDB5A8',
   },
+
   price: {
-    fontSize: 27,
-    fontWeight: 'bold',
-    color: COLORS.primary,
-    marginVertical: 19,
+    fontSize: 25,
+    fontFamily: 'Georgia',
+    color: '#D4AF6E',
+    marginVertical: 22,
   },
+
   divider: {
     height: 1,
-    backgroundColor: COLORS.border,
-    marginBottom: 23,
+    backgroundColor: 'rgba(212,175,110,0.35)',
+    marginBottom: 25,
   },
+
   sectionTitle: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
-    marginBottom: 12,
+    fontSize: 19,
+    fontFamily: 'Georgia',
+    color: '#F4EFE5',
+    marginBottom: 13,
   },
+
   description: {
     fontSize: 14,
-    color: COLORS.textSecondary,
-    lineHeight: 23,
-    marginBottom: 27,
+    fontFamily: 'Georgia',
+    color: '#BDB5A8',
+    lineHeight: 25,
+    marginBottom: 30,
   },
+
   specsTable: {
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: COLORS.border,
-    paddingVertical: 9,
-    marginBottom: 25,
+    borderColor: 'rgba(212,175,110,0.25)',
+    paddingVertical: 8,
+    marginBottom: 28,
   },
+
   specRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: 14,
     gap: 10,
   },
+
   specLabelContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 9,
+    gap: 10,
   },
+
   specLabel: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 13,
+    fontFamily: 'Georgia',
   },
+
   specValue: {
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
     fontSize: 12,
-    fontWeight: '500',
+    fontFamily: 'Georgia',
     flexShrink: 1,
     textAlign: 'right',
   },
+
   primaryBtn: {
-    backgroundColor: COLORS.primary,
-    paddingVertical: 16,
-    borderRadius: 30,
+    backgroundColor: '#D4AF6E',
+    paddingVertical: 17,
+    borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: 10,
-    marginBottom: 12,
+    gap: 11,
+    marginBottom: 13,
+    shadowColor: '#D4AF6E',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
   },
+
   primaryBtnText: {
     color: '#171614',
+    fontFamily: 'Georgia',
     fontWeight: 'bold',
     fontSize: 14,
+    letterSpacing: 0.3,
   },
+
   secondaryBtn: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#211F1B',
     borderWidth: 1,
-    borderColor: COLORS.border,
-    paddingVertical: 15,
-    borderRadius: 30,
+    borderColor: 'rgba(212,175,110,0.35)',
+    paddingVertical: 16,
+    borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 10,
     marginBottom: 15,
   },
+
   favoriteActive: {
-    borderColor: COLORS.primary,
+    borderColor: '#D4AF6E',
+    backgroundColor: 'rgba(212,175,110,0.07)',
   },
+
   secondaryBtnText: {
-    color: COLORS.textPrimary,
-    fontWeight: '600',
+    color: '#F4EFE5',
+    fontFamily: 'Georgia',
     fontSize: 13,
   },
+
   chatBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
-    paddingVertical: 15,
+    gap: 11,
+    paddingVertical: 17,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(212,175,110,0.2)',
+    marginTop: 5,
   },
+
   chatBtnText: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 13,
-    fontWeight: '600',
+    fontFamily: 'Georgia',
+    fontStyle: 'italic',
   },
+
   notFound: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 25,
   },
+
   notFoundTitle: {
-    color: COLORS.textPrimary,
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginVertical: 20,
+    color: '#F4EFE5',
+    fontSize: 22,
+    fontFamily: 'Georgia',
+    marginVertical: 22,
   },
 });

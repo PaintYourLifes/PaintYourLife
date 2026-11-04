@@ -138,7 +138,7 @@ export default function Profile() {
         value={form[field]}
         onChangeText={(value) => handleChange(field, value)}
         placeholder={placeholder}
-        placeholderTextColor="#777B84"
+        placeholderTextColor="#77736C"
         keyboardType={options.keyboardType || 'default'}
         maxLength={options.maxLength}
         autoCapitalize={options.autoCapitalize || 'sentences'}
@@ -162,7 +162,7 @@ export default function Profile() {
           >
             <Ionicons
               name="arrow-back"
-              size={19}
+              size={18}
               color={COLORS.primary}
             />
             <Text style={styles.backText}>Voltar</Text>
@@ -172,13 +172,15 @@ export default function Profile() {
             <View style={styles.profileIcon}>
               <Ionicons
                 name="person-outline"
-                size={34}
+                size={32}
                 color={COLORS.primary}
               />
             </View>
 
             <Text style={styles.subtitle}>MINHA CONTA</Text>
             <Text style={styles.title}>Meu perfil</Text>
+
+            <View style={styles.titleLine} />
 
             <Text style={styles.description}>
               Preencha seus dados para facilitar suas compras e a entrega
@@ -190,7 +192,7 @@ export default function Profile() {
             <View style={styles.sectionHeader}>
               <Ionicons
                 name="person-outline"
-                size={21}
+                size={20}
                 color={COLORS.primary}
               />
               <Text style={styles.sectionTitle}>Dados pessoais</Text>
@@ -237,7 +239,7 @@ export default function Profile() {
             <View style={styles.sectionHeader}>
               <Ionicons
                 name="location-outline"
-                size={21}
+                size={20}
                 color={COLORS.primary}
               />
               <Text style={styles.sectionTitle}>
@@ -314,7 +316,7 @@ export default function Profile() {
           <View style={styles.infoBox}>
             <Ionicons
               name="shield-checkmark-outline"
-              size={22}
+              size={21}
               color={COLORS.primary}
             />
 
@@ -331,8 +333,8 @@ export default function Profile() {
           >
             <Ionicons
               name="save-outline"
-              size={20}
-              color="#090A0C"
+              size={19}
+              color="#171614"
             />
             <Text style={styles.saveButtonText}>
               Salvar informações
@@ -361,111 +363,129 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingBottom: 40,
+    paddingBottom: 45,
   },
 
   container: {
+    width: '100%',
+    maxWidth: 850,
+    alignSelf: 'center',
     paddingHorizontal: 24,
   },
 
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    marginTop: 20,
-    marginBottom: 28,
+    gap: 9,
+    marginTop: 22,
+    marginBottom: 32,
   },
 
   backText: {
     color: COLORS.primary,
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 13,
+    letterSpacing: 0.5,
   },
 
   pageHeader: {
     alignItems: 'center',
-    marginBottom: 35,
+    marginBottom: 42,
   },
 
   profileIcon: {
-    width: 75,
-    height: 75,
-    borderRadius: 40,
+    width: 76,
+    height: 76,
+    borderRadius: 38,
     borderWidth: 1,
-    borderColor: COLORS.primary,
+    borderColor: 'rgba(212,175,110,0.55)',
     backgroundColor: COLORS.cardBackground,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 18,
+    marginBottom: 22,
   },
 
   subtitle: {
     color: COLORS.primary,
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 3,
-    marginBottom: 8,
+    fontSize: 10,
+    fontWeight: '600',
+    letterSpacing: 4,
+    marginBottom: 10,
   },
 
   title: {
     color: COLORS.textPrimary,
-    fontSize: 30,
-    fontWeight: '700',
+    fontSize: 34,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    letterSpacing: 0.5,
+  },
+
+  titleLine: {
+    width: 45,
+    height: 1,
+    backgroundColor: COLORS.primary,
+    marginTop: 18,
+    marginBottom: 15,
   },
 
   description: {
     color: COLORS.textSecondary,
-    fontSize: 14,
+    fontSize: 13,
     textAlign: 'center',
     lineHeight: 22,
-    marginTop: 12,
+    marginTop: 3,
     maxWidth: 430,
   },
 
   section: {
     backgroundColor: COLORS.cardBackground,
-    borderRadius: 13,
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: COLORS.cardBorder,
-    padding: 20,
+    padding: 24,
     marginBottom: 22,
   },
 
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    marginBottom: 23,
+    gap: 12,
+    marginBottom: 26,
+    paddingBottom: 17,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(212,175,110,0.18)',
   },
 
   sectionTitle: {
     color: COLORS.textPrimary,
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 19,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    letterSpacing: 0.2,
   },
 
   inputGroup: {
     width: '100%',
-    marginBottom: 18,
+    marginBottom: 20,
   },
 
   label: {
     color: COLORS.textSecondary,
-    fontSize: 13,
-    fontWeight: '600',
-    marginBottom: 9,
+    fontSize: 12,
+    letterSpacing: 0.5,
+    marginBottom: 10,
   },
 
   input: {
     width: '100%',
-    height: 48,
+    height: 49,
     backgroundColor: COLORS.inputBackground,
-    borderRadius: 7,
+    borderRadius: 3,
     borderWidth: 1,
-    borderColor: COLORS.border,
-    paddingHorizontal: 13,
+    borderColor: 'rgba(212,175,110,0.16)',
+    paddingHorizontal: 15,
     color: COLORS.textPrimary,
-    fontSize: 14,
+    fontSize: 13,
   },
 
   inputRow: {
@@ -477,45 +497,52 @@ const styles = StyleSheet.create({
   infoBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    backgroundColor: '#171713',
+    gap: 14,
+    backgroundColor: COLORS.cardBackground,
     borderWidth: 1,
-    borderColor: '#383126',
-    borderRadius: 9,
-    padding: 16,
-    marginBottom: 25,
+    borderColor: COLORS.cardBorder,
+    borderRadius: 4,
+    padding: 18,
+    marginBottom: 26,
   },
 
   infoText: {
     flex: 1,
     color: COLORS.textSecondary,
     fontSize: 12,
-    lineHeight: 19,
+    lineHeight: 20,
   },
 
   saveButton: {
-    height: 52,
+    height: 54,
     backgroundColor: COLORS.primary,
-    borderRadius: 7,
+    borderRadius: 3,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
+    gap: 11,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.22,
+    shadowRadius: 8,
+    elevation: 4,
   },
 
   saveButtonText: {
-    color: '#090A0C',
-    fontSize: 15,
-    fontWeight: '700',
+    color: '#171614',
+    fontSize: 14,
+    fontWeight: '600',
+    letterSpacing: 0.5,
   },
 
   cancelButton: {
     alignItems: 'center',
-    padding: 18,
+    padding: 19,
   },
 
   cancelButtonText: {
     color: COLORS.textSecondary,
-    fontSize: 13,
+    fontSize: 12,
+    letterSpacing: 0.5,
   },
 });

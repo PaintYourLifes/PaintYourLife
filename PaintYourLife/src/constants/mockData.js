@@ -1,4 +1,4 @@
-export const ARTWORKS = [
+const RAW_ARTWORKS = [
   {
     id: '1',
     title: 'A Noite Estrelada',
@@ -23,7 +23,7 @@ export const ARTWORKS = [
     dimensions: '92 x 73 cm',
     style: 'Pós-impressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/800px-Vincent_Willem_van_Gogh_127.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Vincent_Willem_van_Gogh_128.jpg',
     description: 'Pintura de girassóis em uma composição de tons amarelos.',
     similarIds: ['1', '9', '10']
   },
@@ -37,7 +37,7 @@ export const ARTWORKS = [
     dimensions: '180 x 180 cm',
     style: 'Art Nouveau',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/800px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg',
+    image: 'https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/04/13/65303452-o-beijo-gustav-klimt.jpg',
     description: 'Duas figuras envolvidas por padrões ornamentais e detalhes dourados.',
     similarIds: ['5', '8', '11']
   },
@@ -51,7 +51,7 @@ export const ARTWORKS = [
     dimensions: '260 x 391 cm',
     style: 'Fauvismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/en/d/d8/Matisse-Dance.jpg',
+    image: 'https://i0.wp.com/arthive.com/res/media/img/oy800/work/b74/449397.jpg?ssl=1',
     description: 'Cinco figuras dançam em círculo em uma composição de cores contrastantes.',
     similarIds: ['6', '7', '12']
   },
@@ -121,7 +121,7 @@ export const ARTWORKS = [
     dimensions: '72 x 90 cm',
     style: 'Pós-impressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Van_Gogh_-_Bedroom_in_Arles_-_Google_Art_Project.jpg',
+    image: 'https://www.conexaoparis.com.br/wp-content/uploads/2016/03/quarto-van-gogh-1.jpg',
     description: 'Representação do quarto do artista com cores fortes.',
     similarIds: ['1', '2', '10']
   },
@@ -149,7 +149,7 @@ export const ARTWORKS = [
     dimensions: '172 x 278 cm',
     style: 'Renascimento',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Birth_of_Venus_Botticelli.jpg',
+    image: 'https://static.todamateria.com.br/upload/ve/nu/venus_1.jpg',
     description: 'Obra que representa Vênus chegando à costa sobre uma concha.',
     similarIds: ['3', '5', '8']
   },
@@ -179,7 +179,7 @@ export const ARTWORKS = [
     dimensions: '363 x 437 cm',
     style: 'Barroco',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/The_Nightwatch_by_Rembrandt.jpg/800px-The_Nightwatch_by_Rembrandt.jpg',
+    image: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/La_ronda_de_noche%2C_por_Rembrandt_van_Rijn.jpg/1280px-La_ronda_de_noche%2C_por_Rembrandt_van_Rijn.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
     description: 'Grande composição barroca marcada pelo movimento e pelo contraste de luz.',
     similarIds: ['8', '14', '15']
   },
@@ -193,7 +193,7 @@ export const ARTWORKS = [
     dimensions: '322 x 340 cm',
     style: 'Barroco',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/The_Calling_of_Saint_Matthew-Caravaggo_%281599-1600%29.jpg/800px-The_Calling_of_Saint_Matthew-Caravaggo_%281599-1600%29.jpg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTr8HXFEtnEGynkmZWlcflAn-_VC5U28y96NZvW3jRQ&s=10',
     description: 'Cena religiosa que utiliza iluminação dramática.',
     similarIds: ['8', '13', '15']
   },
@@ -209,7 +209,7 @@ export const ARTWORKS = [
     dimensions: '48 x 63 cm',
     style: 'Impressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Claude_Monet%2C_Impression%2C_soleil_levant.jpg/800px-Claude_Monet%2C_Impression%2C_soleil_levant.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Claude_Monet%2C_Impression%2C_soleil_levant%2C_1872.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original',
     description: 'Paisagem portuária com pinceladas soltas e efeitos de luz.',
     similarIds: ['16', '17', '2']
   },
@@ -223,7 +223,7 @@ export const ARTWORKS = [
     dimensions: '131 x 175 cm',
     style: 'Impressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre-Auguste_Renoir%2C_Le_Moulin_de_la_Galette.jpg/800px-Pierre-Auguste_Renoir%2C_Le_Moulin_de_la_Galette.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Pierre-Auguste_Renoir%2C_Le_Moulin_de_la_Galette.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original',
     description: 'Cena de pessoas reunidas em um baile ao ar livre.',
     similarIds: ['15', '17', '2']
   },
@@ -237,7 +237,7 @@ export const ARTWORKS = [
     dimensions: '85 x 75 cm',
     style: 'Impressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Edgar_Degas_-_The_Dance_Class_-_Google_Art_Project.jpg/800px-Edgar_Degas_-_The_Dance_Class_-_Google_Art_Project.jpg',
+    image: 'https://medias.artmajeur.com/ultra_quality/333457_edgar-degas-the-dance-class.jpg?v=1784742534',
     description: 'Bailarinas em uma aula de dança observadas pelo professor.',
     similarIds: ['15', '16', '4']
   },
@@ -253,7 +253,7 @@ export const ARTWORKS = [
     dimensions: '84 x 42 cm',
     style: 'Art Nouveau',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Gustav_Klimt_046.jpg/800px-Gustav_Klimt_046.jpg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRozhm7Rgl3ggET6SHQobEr4yUIejzs31e-e8P8PywETw&s=10',
     description: 'Retrato ornamental com detalhes dourados e padrões decorativos.',
     similarIds: ['3', '19', '20']
   },
@@ -267,7 +267,7 @@ export const ARTWORKS = [
     dimensions: '195 x 102 cm',
     style: 'Art Nouveau',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gustav_Klimt_-_The_Tree_of_Life%2C_1909.jpg/800px-Gustav_Klimt_-_The_Tree_of_Life%2C_1909.jpg',
+    image: 'https://santhatela.com.br/wp-content/uploads/2017/03/klimt-arvore-da-vida-1905-d.jpg',
     description: 'Composição decorativa com galhos sinuosos e elementos simbólicos.',
     similarIds: ['3', '18', '20']
   },
@@ -283,7 +283,7 @@ export const ARTWORKS = [
     dimensions: '125 x 191 cm',
     style: 'Expressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Edvard_Munch_-_The_Dance_of_Life_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_The_Dance_of_Life_-_Google_Art_Project.jpg',
+    image: 'https://santhatela.com.br/wp-content/uploads/2017/02/munch-danca-vida-d.jpg',
     description: 'Obra que explora sentimentos e relações humanas por meio das cores.',
     similarIds: ['6', '21', '22']
   },
@@ -297,7 +297,7 @@ export const ARTWORKS = [
     dimensions: '94 x 74 cm',
     style: 'Expressionismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Edvard_Munch_-_Anxiety_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_Anxiety_-_Google_Art_Project.jpg',
+    image: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Edvard_Munch_-_Anxiety_-_Google_Art_Project.jpg/1920px-Edvard_Munch_-_Anxiety_-_Google_Art_Project.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
     description: 'Pintura expressiva que utiliza cores e formas para transmitir emoções.',
     similarIds: ['6', '20', '22']
   },
@@ -313,7 +313,7 @@ export const ARTWORKS = [
     dimensions: '80 x 60 cm',
     style: 'Fauvismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Henri_Matisse_-_Woman_with_a_Hat.jpg/800px-Henri_Matisse_-_Woman_with_a_Hat.jpg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVQwtu2tmyW-yo_uI-fO6AMTT5vqpA6_Y8x2Uu3IY3hQ&s=10',
     description: 'Retrato conhecido pelo uso livre de cores fortes.',
     similarIds: ['4', '23', '24']
   },
@@ -327,7 +327,7 @@ export const ARTWORKS = [
     dimensions: '176 x 240 cm',
     style: 'Fauvismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Le_bonheur_de_vivre.jpg/800px-Le_bonheur_de_vivre.jpg',
+    image: 'https://allpaintingsstore.com/media/artworks/images-full/7c/73/7c7364c3f19fddf59504fd243bde1e4e.jpg',
     description: 'Cena colorida que representa figuras em uma paisagem imaginária.',
     similarIds: ['4', '22', '24']
   },
@@ -357,7 +357,7 @@ export const ARTWORKS = [
     dimensions: '60 x 50 cm',
     style: 'Cubismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Georges_Braque_1910.jpg/800px-Georges_Braque_1910.jpg',
+    image: 'https://www.researchgate.net/publication/322510509/figure/fig5/AS:583232280563712@1516064819466/Figura-9-Violino-e-castical-Violon-et-chandelier-oleo-sobre-tela-1910-Georges-Braque.png',
     description: 'Composição cubista que fragmenta objetos em formas geométricas.',
     similarIds: ['12', '24', '26']
   },
@@ -373,7 +373,7 @@ export const ARTWORKS = [
     dimensions: '116 x 89 cm',
     style: 'Surrealismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/en/e/ec/Magritte_TheSonOfMan.jpg',
+    image: 'https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2023/05/o-filho-do-home-rene-magritte.jpg?quality=70&w=848',
     description: 'Retrato surrealista de um homem com o rosto parcialmente escondido por uma maçã.',
     similarIds: ['10', '27', '28']
   },
@@ -387,7 +387,7 @@ export const ARTWORKS = [
     dimensions: '51 x 77 cm',
     style: 'Surrealismo',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/en/6/6d/Swans_Reflecting_Elephants.jpg',
+    image: 'https://pub-02f1c5d6822847b09b6b4643ca171bd3.r2.dev/migrated_1777905215647_nckrrmo1nk71l4hoebpy.jpg',
     description: 'Paisagem surrealista que transforma reflexos em figuras inesperadas.',
     similarIds: ['10', '26', '28']
   },
@@ -403,7 +403,7 @@ export const ARTWORKS = [
     dimensions: '460 x 880 cm',
     style: 'Renascimento',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Leonardo_da_Vinci_-_The_Last_Supper_high_res.jpg/800px-Leonardo_da_Vinci_-_The_Last_Supper_high_res.jpg',
+    image: 'https://static.todamateria.com.br/upload/ul/ti/ultima_ceia_da_vinci_1_694x250_c.jpg',
     description: 'Pintura mural que representa a última refeição de Jesus com seus discípulos.',
     similarIds: ['5', '11', '29']
   },
@@ -417,7 +417,7 @@ export const ARTWORKS = [
     dimensions: '280 x 570 cm',
     style: 'Renascimento',
     region: 'Europa',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam.jpg/800px-Michelangelo_-_Creation_of_Adam.jpg',
+    image: 'https://static.todamateria.com.br/upload/ac/ri/a-criacao-de-adao-og.jpg',
     description: 'Afresco famoso que representa o encontro das mãos de Deus e Adão.',
     similarIds: ['5', '11', '28']
   },
@@ -433,8 +433,22 @@ export const ARTWORKS = [
     dimensions: '25 x 37 cm',
     style: 'Ukiyo-e',
     region: 'Ásia',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Red_Fuji_southern_wind_clear_morning.jpg/800px-Red_Fuji_southern_wind_clear_morning.jpg',
+    image: 'https://art7telas.com.br/wp-content/uploads/2024/03/katsushika-hokusai-vento-sul-ceu-limpo-1830-1832.jpg',
     description: 'Gravura japonesa que apresenta o Monte Fuji em tons avermelhados.',
     similarIds: ['7', '4', '6']
   }
 ];
+
+export const ARTWORKS = RAW_ARTWORKS.map((artwork) => {
+  const imageUrl =
+    typeof artwork.image === 'string'
+      ? artwork.image.match(/\]\((https?:\/\/[^)]+)\)/)
+      : null;
+
+  return {
+    ...artwork,
+    image: imageUrl
+      ? imageUrl[1].replace(/\\/g, '')
+      : artwork.image,
+  };
+});

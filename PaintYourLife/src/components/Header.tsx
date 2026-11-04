@@ -84,33 +84,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    backgroundColor: COLORS.background,
+    backgroundColor: '#171614',
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    borderBottomColor: 'rgba(212,175,110,0.16)',
   },
+
   leftSection: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   backButton: {
     marginRight: 12,
   },
+
   logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   logoText: {
-    color: COLORS.textPrimary,
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 0.5,
+    color: '#F4EFE5',
+    fontFamily: 'Georgia',
+    fontSize: 18,
+    fontWeight: 'normal',
+    letterSpacing: -0.5,
     marginLeft: 9,
   },
+
   iconsRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 17,
   },
+
   iconButton: {
     padding: 4,
   },

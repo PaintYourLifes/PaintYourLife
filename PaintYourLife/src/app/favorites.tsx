@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -59,6 +58,8 @@ export default function Favorites() {
 
       <Text style={styles.heading}>Meus favoritos</Text>
 
+      <View style={styles.titleLine} />
+
       <Text style={styles.description}>
         Suas obras de arte preferidas reunidas em um só lugar.
       </Text>
@@ -90,7 +91,7 @@ export default function Favorites() {
         <FlatList
           data={favorites}
           renderItem={renderArtwork}
-          keyExtractor={(item: any) => item.id}
+          keyExtractor={(item: any) => String(item.id)}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={styles.row}
@@ -105,89 +106,137 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#171614',
-    paddingHorizontal: 20,
+    paddingHorizontal: 22,
     paddingTop: 55,
   },
+
   subtitle: {
-    color: '#A98248',
+    color: '#D4AF6E',
+    fontFamily: 'Georgia',
     fontSize: 11,
+    fontStyle: 'italic',
     letterSpacing: 3,
-    fontWeight: '600',
     marginBottom: 10,
   },
+
   heading: {
-    color: '#F3EFE7',
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 8,
+    color: '#F4EFE5',
+    fontFamily: 'Georgia',
+    fontSize: 34,
+    fontWeight: '400',
+    marginBottom: 15,
+    textShadowColor: 'rgba(0,0,0,0.55)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 5,
   },
+
+  titleLine: {
+    width: 45,
+    height: 1,
+    backgroundColor: '#D4AF6E',
+    marginBottom: 16,
+  },
+
   description: {
-    color: '#B9B1A4',
+    color: '#BDB5A8',
+    fontFamily: 'Georgia',
     fontSize: 14,
-    lineHeight: 21,
-    marginBottom: 22,
+    fontStyle: 'italic',
+    lineHeight: 23,
+    marginBottom: 20,
   },
+
   count: {
-    color: '#D8C6A3',
+    color: '#E5C58C',
+    fontFamily: 'Georgia',
     fontSize: 13,
-    marginBottom: 18,
+    fontStyle: 'italic',
+    paddingBottom: 17,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(212,175,110,0.25)',
   },
+
   list: {
     paddingBottom: 30,
   },
+
   row: {
     justifyContent: 'space-between',
   },
+
   card: {
     width: '48%',
-    backgroundColor: '#25221D',
-    borderRadius: 12,
+    backgroundColor: '#211F1B',
+    borderRadius: 5,
     marginBottom: 18,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#40372B',
+    borderColor: 'rgba(212,175,110,0.28)',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 7,
+    elevation: 4,
   },
+
   image: {
     width: '100%',
-    height: 155,
-    backgroundColor: '#30271D',
+    height: 175,
+    backgroundColor: '#171614',
   },
+
   info: {
-    padding: 11,
+    paddingHorizontal: 12,
+    paddingVertical: 13,
   },
+
   title: {
-    color: '#F3EFE7',
-    fontSize: 14,
-    fontWeight: 'bold',
+    color: '#F4EFE5',
+    fontFamily: 'Georgia',
+    fontSize: 15,
+    fontStyle: 'italic',
+    fontWeight: '400',
     marginBottom: 5,
   },
+
   artist: {
-    color: '#B9B1A4',
-    fontSize: 11,
-    marginBottom: 9,
+    color: '#BDB5A8',
+    fontFamily: 'Georgia',
+    fontSize: 12,
+    fontStyle: 'italic',
+    marginBottom: 11,
   },
+
   price: {
-    color: '#D8B779',
-    fontSize: 14,
-    fontWeight: 'bold',
+    color: '#E5C58C',
+    fontFamily: 'Georgia',
+    fontSize: 16,
+    fontWeight: '400',
   },
+
   favoriteButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
+    paddingVertical: 11,
     borderTopWidth: 1,
-    borderTopColor: '#40372B',
+    borderTopColor: 'rgba(212,175,110,0.22)',
     gap: 7,
   },
+
   heart: {
-    color: '#C78368',
+    color: '#D4AF6E',
     fontSize: 17,
   },
+
   removeText: {
-    color: '#D8C6A3',
+    color: '#BDB5A8',
+    fontFamily: 'Georgia',
     fontSize: 12,
+    fontStyle: 'italic',
   },
+
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -195,33 +244,50 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 70,
   },
+
   emptyIcon: {
-    color: '#A98248',
+    color: '#D4AF6E',
     fontSize: 65,
     marginBottom: 15,
   },
+
   emptyTitle: {
-    color: '#F3EFE7',
-    fontSize: 21,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  emptyDescription: {
-    color: '#B9B1A4',
-    fontSize: 14,
+    color: '#F4EFE5',
+    fontFamily: 'Georgia',
+    fontSize: 23,
+    fontStyle: 'italic',
+    fontWeight: '400',
+    marginBottom: 12,
     textAlign: 'center',
-    lineHeight: 22,
-    marginBottom: 25,
   },
+
+  emptyDescription: {
+    color: '#BDB5A8',
+    fontFamily: 'Georgia',
+    fontSize: 13,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    lineHeight: 23,
+    marginBottom: 27,
+  },
+
   catalogButton: {
-    backgroundColor: '#A98248',
-    paddingVertical: 14,
-    paddingHorizontal: 25,
-    borderRadius: 8,
+    backgroundColor: '#D4AF6E',
+    paddingVertical: 15,
+    paddingHorizontal: 27,
+    borderRadius: 3,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 3,
   },
+
   catalogButtonText: {
     color: '#171614',
+    fontFamily: 'Georgia',
+    fontSize: 13,
     fontWeight: 'bold',
-    fontSize: 14,
+    letterSpacing: 0.4,
   },
 });

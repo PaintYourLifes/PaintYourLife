@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -368,7 +367,7 @@ export default function OrderSummaryScreen() {
           <Ionicons
             name="arrow-forward"
             size={19}
-            color="#090A0C"
+            color="#171614"
           />
         </TouchableOpacity>
 
@@ -456,7 +455,7 @@ export default function OrderSummaryScreen() {
               <Ionicons
                 name="arrow-forward"
                 size={19}
-                color="#090A0C"
+                color="#171614"
               />
             </TouchableOpacity>
           </View>
@@ -469,7 +468,7 @@ export default function OrderSummaryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: '#171614',
   },
 
   content: {
@@ -478,75 +477,79 @@ const styles = StyleSheet.create({
   },
 
   eyebrow: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 10,
     letterSpacing: 3,
-    fontWeight: '600',
-    marginBottom: 8,
+    fontWeight: '500',
+    marginBottom: 10,
   },
 
   pageTitle: {
-    color: COLORS.textPrimary,
-    fontSize: 27,
-    fontWeight: 'bold',
+    color: '#F4EFE5',
+    fontSize: 29,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
   },
 
   subtitle: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 12,
-    lineHeight: 19,
-    marginTop: 7,
-    marginBottom: 25,
+    lineHeight: 20,
+    marginTop: 9,
+    marginBottom: 28,
   },
 
   stepHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    marginTop: 10,
-    gap: 10,
+    marginBottom: 13,
+    marginTop: 15,
+    gap: 11,
   },
 
   stepNumber: {
     width: 29,
     height: 29,
-    borderRadius: 15,
-    backgroundColor: COLORS.inputBackground,
+    borderRadius: 3,
+    backgroundColor: '#211F1B',
     borderWidth: 1,
-    borderColor: COLORS.primary,
+    borderColor: 'rgba(212,175,110,0.35)',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   stepNumberText: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 10,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 
   sectionTitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
+    fontSize: 16,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#F4EFE5',
   },
 
   infoCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.cardBackground,
+    backgroundColor: '#211F1B',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 4,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: 'rgba(212,175,110,0.16)',
     gap: 12,
   },
 
   infoIcon: {
     width: 42,
     height: 42,
-    borderRadius: 10,
-    backgroundColor: COLORS.inputBackground,
+    borderRadius: 3,
+    backgroundColor: '#171614',
+    borderWidth: 1,
+    borderColor: 'rgba(212,175,110,0.15)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -556,24 +559,25 @@ const styles = StyleSheet.create({
   },
 
   infoTitle: {
-    color: COLORS.textPrimary,
-    fontSize: 13,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    color: '#F4EFE5',
+    fontSize: 14,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    marginBottom: 5,
   },
 
   infoDescription: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 11,
     marginTop: 4,
-    lineHeight: 16,
+    lineHeight: 17,
   },
 
   addressText: {
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
     fontSize: 11,
     marginTop: 9,
-    lineHeight: 17,
+    lineHeight: 18,
   },
 
   editButton: {
@@ -590,26 +594,26 @@ const styles = StyleSheet.create({
   },
 
   editAddressText: {
-    color: COLORS.primary,
-    fontSize: 12,
-    fontWeight: '600',
+    color: '#D4AF6E',
+    fontSize: 11,
+    letterSpacing: 0.3,
   },
 
   summaryCard: {
-    backgroundColor: COLORS.cardBackground,
+    backgroundColor: '#211F1B',
     padding: 16,
-    borderRadius: 13,
+    borderRadius: 4,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: 'rgba(212,175,110,0.16)',
   },
 
   productRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: 13,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-    gap: 10,
+    borderBottomColor: 'rgba(212,175,110,0.12)',
+    gap: 11,
   },
 
   lastProductRow: {
@@ -619,8 +623,10 @@ const styles = StyleSheet.create({
   productIcon: {
     width: 40,
     height: 40,
-    borderRadius: 9,
-    backgroundColor: COLORS.inputBackground,
+    borderRadius: 3,
+    backgroundColor: '#171614',
+    borderWidth: 1,
+    borderColor: 'rgba(212,175,110,0.15)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -630,49 +636,50 @@ const styles = StyleSheet.create({
   },
 
   itemText: {
-    color: COLORS.textPrimary,
-    fontSize: 12,
-    fontWeight: '600',
+    color: '#F4EFE5',
+    fontSize: 13,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
   },
 
   itemQuantity: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 10,
-    marginTop: 5,
+    marginTop: 6,
   },
 
   itemValue: {
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 
   divider: {
     height: 1,
-    backgroundColor: COLORS.border,
-    marginVertical: 13,
+    backgroundColor: 'rgba(212,175,110,0.22)',
+    marginVertical: 15,
   },
 
   priceRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 6,
+    marginVertical: 7,
   },
 
   priceLabel: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 12,
   },
 
   priceValue: {
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
     fontSize: 12,
   },
 
   freeShipping: {
-    color: '#4ECA78',
+    color: '#D4AF6E',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 
   totalRow: {
@@ -682,51 +689,55 @@ const styles = StyleSheet.create({
   },
 
   totalLabel: {
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
     fontSize: 14,
-    fontWeight: 'bold',
+    fontFamily: 'Georgia',
   },
 
   totalValue: {
-    color: COLORS.primary,
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#D4AF6E',
+    fontSize: 19,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
   },
 
   notice: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 9,
-    marginTop: 18,
-    padding: 13,
-    backgroundColor: COLORS.cardBackground,
-    borderRadius: 10,
+    gap: 10,
+    marginTop: 19,
+    padding: 14,
+    backgroundColor: '#211F1B',
+    borderWidth: 1,
+    borderColor: 'rgba(212,175,110,0.16)',
+    borderRadius: 4,
   },
 
   noticeText: {
     flex: 1,
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 11,
-    lineHeight: 17,
+    lineHeight: 18,
   },
 
   confirmBtn: {
     flexDirection: 'row',
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#D4AF6E',
     paddingVertical: 16,
     paddingHorizontal: 20,
-    borderRadius: 28,
+    borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
-    marginTop: 22,
+    marginTop: 23,
     width: '100%',
   },
 
   confirmBtnText: {
-    color: '#090A0C',
-    fontWeight: 'bold',
-    fontSize: 14,
+    color: '#171614',
+    fontWeight: '600',
+    fontSize: 13,
+    letterSpacing: 0.4,
   },
 
   disabledButton: {
@@ -743,30 +754,30 @@ const styles = StyleSheet.create({
   },
 
   backText: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 12,
   },
 
   emptyCart: {
     alignItems: 'center',
-    paddingVertical: 20,
-    gap: 10,
+    paddingVertical: 22,
+    gap: 11,
   },
 
   emptyText: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 12,
   },
 
   catalogLink: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 
   successContainer: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: '#171614',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 25,
@@ -781,82 +792,85 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 45,
-    borderWidth: 2,
-    borderColor: COLORS.primary,
-    backgroundColor: COLORS.cardBackground,
+    borderWidth: 1,
+    borderColor: '#D4AF6E',
+    backgroundColor: '#211F1B',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 25,
+    marginBottom: 27,
   },
 
   successEyebrow: {
-    color: COLORS.primary,
-    fontSize: 11,
+    color: '#D4AF6E',
+    fontSize: 10,
     letterSpacing: 4,
-    fontWeight: 'bold',
-    marginBottom: 12,
+    fontWeight: '500',
+    marginBottom: 13,
   },
 
   successTitle: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
-    marginBottom: 12,
+    fontSize: 28,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#F4EFE5',
+    marginBottom: 13,
     textAlign: 'center',
   },
 
   successSubtitle: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: 12,
     lineHeight: 21,
-    marginBottom: 28,
+    marginBottom: 29,
   },
 
   orderBadge: {
-    backgroundColor: COLORS.cardBackground,
+    backgroundColor: '#211F1B',
     padding: 22,
-    borderRadius: 13,
+    borderRadius: 4,
     alignItems: 'center',
     width: '100%',
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: 'rgba(212,175,110,0.2)',
   },
 
   orderLabel: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 10,
     letterSpacing: 2,
   },
 
   orderNumber: {
-    color: COLORS.primary,
-    fontSize: 23,
-    fontWeight: 'bold',
-    marginTop: 8,
+    color: '#D4AF6E',
+    fontSize: 25,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    marginTop: 9,
   },
 
   orderDivider: {
     width: '100%',
     height: 1,
-    backgroundColor: COLORS.border,
-    marginVertical: 17,
+    backgroundColor: 'rgba(212,175,110,0.2)',
+    marginVertical: 18,
   },
 
   orderTotalLabel: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 11,
   },
 
   orderTotal: {
-    color: COLORS.textPrimary,
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 5,
+    color: '#F4EFE5',
+    fontSize: 22,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    marginTop: 6,
   },
 
   orderCustomer: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 12,
     textAlign: 'center',
   },

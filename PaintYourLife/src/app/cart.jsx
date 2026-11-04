@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -66,16 +65,16 @@ export default function CartScreen() {
       </View>
 
       <TouchableOpacity
-  style={styles.backBtn}
-  onPress={() => router.push('/catalog')}
->
-  <Ionicons
-    name="arrow-back"
-    size={16}
-    color={COLORS.primary}
-  />
-  <Text style={styles.backText}>Continuar comprando</Text>
-</TouchableOpacity>
+        style={styles.backBtn}
+        onPress={() => router.push('/catalog')}
+      >
+        <Ionicons
+          name="arrow-back"
+          size={16}
+          color={COLORS.primary}
+        />
+        <Text style={styles.backText}>Continuar comprando</Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -200,13 +199,15 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: '#171614',
   },
+
   content: {
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
   },
+
   backBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -214,152 +215,188 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     gap: 8,
   },
+
   backText: {
-    color: COLORS.textSecondary,
-    fontSize: 13,
+    color: '#BDB5A8',
+    fontSize: 12,
   },
+
   subtitle: {
-    color: COLORS.primary,
+    color: '#D4AF6E',
     fontSize: 10,
     letterSpacing: 3,
-    fontWeight: '600',
-    marginBottom: 8,
+    fontWeight: '500',
+    marginBottom: 10,
   },
+
   title: {
-    fontSize: 27,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
+    fontSize: 29,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#F4EFE5',
     marginBottom: 22,
   },
+
   list: {
     paddingBottom: 20,
   },
+
   cartItem: {
     flexDirection: 'row',
-    backgroundColor: COLORS.cardBackground,
+    backgroundColor: '#211F1B',
     padding: 12,
-    borderRadius: 12,
+    borderRadius: 4,
     marginBottom: 14,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: 'rgba(212,175,110,0.16)',
   },
+
   itemImage: {
     width: 88,
     height: 105,
-    borderRadius: 8,
-    backgroundColor: COLORS.inputBackground,
+    borderRadius: 3,
+    backgroundColor: '#171614',
   },
+
   itemInfo: {
     flex: 1,
     marginLeft: 13,
   },
+
   itemName: {
-    fontWeight: 'bold',
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
     fontSize: 14,
-    color: COLORS.textPrimary,
-    marginBottom: 5,
+    color: '#F4EFE5',
+    marginBottom: 6,
   },
+
   itemArtist: {
-    color: COLORS.textSecondary,
-    fontSize: 12,
-    marginBottom: 8,
+    color: '#BDB5A8',
+    fontSize: 11,
+    marginBottom: 9,
   },
+
   itemPrice: {
-    fontWeight: 'bold',
-    color: COLORS.primary,
-    fontSize: 14,
-    marginBottom: 10,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#D4AF6E',
+    fontSize: 15,
+    marginBottom: 11,
   },
+
   controls: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: COLORS.inputBackground,
-    borderRadius: 7,
+    backgroundColor: '#171614',
+    borderWidth: 1,
+    borderColor: 'rgba(212,175,110,0.18)',
+    borderRadius: 3,
     paddingHorizontal: 5,
     paddingVertical: 3,
   },
+
   qtyBtn: {
     width: 27,
     height: 27,
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   qty: {
     marginHorizontal: 10,
     fontSize: 13,
-    color: COLORS.textPrimary,
+    color: '#F4EFE5',
   },
+
   removeBtn: {
     padding: 8,
     alignSelf: 'flex-start',
   },
+
   footer: {
     borderTopWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: 'rgba(212,175,110,0.2)',
     paddingTop: 18,
     paddingBottom: 20,
   },
+
   summaryTitle: {
-    color: COLORS.textPrimary,
-    fontSize: 17,
-    fontWeight: 'bold',
+    color: '#F4EFE5',
+    fontSize: 18,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
     marginBottom: 18,
   },
+
   summaryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 12,
   },
+
   summaryLabel: {
-    fontSize: 14,
-    color: COLORS.textSecondary,
+    fontSize: 12,
+    color: '#BDB5A8',
   },
+
   summaryValue: {
-    fontSize: 14,
-    color: COLORS.textPrimary,
+    fontSize: 12,
+    color: '#F4EFE5',
   },
+
   freeFreight: {
-    fontSize: 14,
-    color: '#8EAF85',
-    fontWeight: '600',
+    fontSize: 12,
+    color: '#D4AF6E',
+    fontWeight: '500',
   },
+
   divider: {
     height: 1,
-    backgroundColor: COLORS.border,
-    marginVertical: 10,
+    backgroundColor: 'rgba(212,175,110,0.2)',
+    marginVertical: 12,
   },
+
   totalRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
   },
+
   totalLabel: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: COLORS.textPrimary,
+    fontSize: 17,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#F4EFE5',
   },
+
   totalValue: {
     fontSize: 21,
-    fontWeight: 'bold',
-    color: COLORS.primary,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
+    color: '#D4AF6E',
   },
+
   checkoutBtn: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#D4AF6E',
     paddingVertical: 16,
-    borderRadius: 30,
+    borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 12,
   },
+
   checkoutBtnText: {
     color: '#171614',
-    fontWeight: 'bold',
-    fontSize: 15,
+    fontWeight: '600',
+    fontSize: 13,
+    letterSpacing: 0.4,
   },
+
   securityInfo: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -367,10 +404,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     gap: 7,
   },
+
   securityText: {
-    color: COLORS.textSecondary,
+    color: '#BDB5A8',
     fontSize: 11,
   },
+
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -378,29 +417,35 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingBottom: 80,
   },
+
   emptyTitle: {
-    color: COLORS.textPrimary,
-    fontSize: 21,
-    fontWeight: 'bold',
+    color: '#F4EFE5',
+    fontSize: 22,
+    fontFamily: 'Georgia',
+    fontWeight: 'normal',
     marginTop: 20,
     marginBottom: 10,
+    textAlign: 'center',
   },
+
   emptyText: {
-    color: COLORS.textSecondary,
-    fontSize: 14,
+    color: '#BDB5A8',
+    fontSize: 13,
     textAlign: 'center',
     lineHeight: 22,
     marginBottom: 25,
   },
+
   continueBtn: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#D4AF6E',
     paddingVertical: 14,
     paddingHorizontal: 28,
-    borderRadius: 25,
+    borderRadius: 3,
   },
+
   continueBtnText: {
     color: '#171614',
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 13,
+    fontWeight: '600',
   },
 });
