@@ -1,77 +1,227 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
-import { ARTWORKS } from '../constants/mockData';
-import { COLORS } from '../constants/theme';
-import Header from '../components/Header';
 
-export default function FavoritesScreen() {
+import React from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import { useApp } from '../hooks/useAppContext';
+
+export default function Favorites() {
   const router = useRouter();
-  // Exemplo com obras marcadas como favoritas
-  const favoriteArtworks = ARTWORKS;
+
+  const { favorites, toggleFavorite } = useApp() as any;
+
+  const renderArtwork = ({ item }: any) => (
+    <View style={styles.card}>
+      <TouchableOpacity
+        activeOpacity={0.85}
+        onPress={() =>
+          router.push({
+            pathname: '/details',
+            params: { id: item.id },
+          })
+        }
+      >
+        <Image
+          source={{ uri: item.image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+
+        <View style={styles.info}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.artist}>{item.artist}</Text>
+          <Text style={styles.price}>
+            R$ {item.price.toLocaleString('pt-BR')}
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.favoriteButton}
+        onPress={() => toggleFavorite(item)}
+        activeOpacity={0.7}
+      >
+        <Text style={styles.heart}>♥</Text>
+        <Text style={styles.removeText}>Remover</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <Text style={styles.subtitle}>SUA COLEÇÃO PESSOAL</Text>
 
-      <View style={styles.content}>
-        <Text style={styles.title}>Minhas obras favoritas ({favoriteArtworks.length})</Text>
+      <Text style={styles.heading}>Meus favoritos</Text>
 
+      <Text style={styles.description}>
+        Suas obras de arte preferidas reunidas em um só lugar.
+      </Text>
+
+      <Text style={styles.count}>
+        {favorites.length} {favorites.length === 1 ? 'obra salva' : 'obras salvas'}
+      </Text>
+
+      {favorites.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyIcon}>♡</Text>
+          <Text style={styles.emptyTitle}>
+            Sua coleção está vazia
+          </Text>
+          <Text style={styles.emptyDescription}>
+            Explore nosso catálogo e salve as obras que mais gostar.
+          </Text>
+
+          <TouchableOpacity
+            style={styles.catalogButton}
+            onPress={() => router.push('/catalog')}
+          >
+            <Text style={styles.catalogButtonText}>
+              Explorar catálogo
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
         <FlatList
-          data={favoriteArtworks}
+          data={favorites}
+          renderItem={renderArtwork}
+          keyExtractor={(item: any) => item.id}
           numColumns={2}
-          keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
-          columnWrapperStyle={styles.columnWrapper}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.card}
-              onPress={() => router.push({ pathname: '/details', params: { id: item.id } })}
-            >
-              <View style={styles.imageWrapper}>
-                <Image source={{ uri: item.image }} style={styles.image} />
-                <TouchableOpacity style={styles.favoriteBadge}>
-                  <Text style={styles.favoriteIcon}>♥</Text>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.artTitle} numberOfLines={1}>{item.title}</Text>
-              <Text style={styles.artist} numberOfLines={1}>{item.artist}</Text>
-              <Text style={styles.price}>R$ {item.price.toLocaleString()}</Text>
-            </TouchableOpacity>
-          )}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.list}
         />
-      </View>
-    </SafeAreaView>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  content: { flex: 1, paddingHorizontal: 16, paddingTop: 16 },
-  title: { fontSize: 20, fontWeight: 'bold', color: COLORS.textPrimary, marginBottom: 16 },
-  columnWrapper: { justifyContent: 'space-between' },
+  container: {
+    flex: 1,
+    backgroundColor: '#171614',
+    paddingHorizontal: 20,
+    paddingTop: 55,
+  },
+  subtitle: {
+    color: '#A98248',
+    fontSize: 11,
+    letterSpacing: 3,
+    fontWeight: '600',
+    marginBottom: 10,
+  },
+  heading: {
+    color: '#F3EFE7',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  description: {
+    color: '#B9B1A4',
+    fontSize: 14,
+    lineHeight: 21,
+    marginBottom: 22,
+  },
+  count: {
+    color: '#D8C6A3',
+    fontSize: 13,
+    marginBottom: 18,
+  },
+  list: {
+    paddingBottom: 30,
+  },
+  row: {
+    justifyContent: 'space-between',
+  },
   card: {
     width: '48%',
-    backgroundColor: COLORS.cardBackground,
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 14,
-    borderWidth: 1,
-    borderColor: COLORS.cardBorder,
-  },
-  imageWrapper: { position: 'relative' },
-  image: { width: '100%', height: 130, borderRadius: 6 },
-  favoriteBadge: {
-    position: 'absolute',
-    top: 6,
-    right: 6,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: '#25221D',
     borderRadius: 12,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
+    marginBottom: 18,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#40372B',
   },
-  favoriteIcon: { color: COLORS.primary, fontSize: 13 },
-  artTitle: { color: COLORS.textPrimary, fontWeight: 'bold', marginTop: 8, fontSize: 13 },
-  artist: { color: COLORS.textSecondary, fontSize: 11, marginTop: 2 },
-  price: { color: COLORS.textPrimary, fontWeight: 'bold', marginTop: 6, fontSize: 13 },
+  image: {
+    width: '100%',
+    height: 155,
+    backgroundColor: '#30271D',
+  },
+  info: {
+    padding: 11,
+  },
+  title: {
+    color: '#F3EFE7',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  artist: {
+    color: '#B9B1A4',
+    fontSize: 11,
+    marginBottom: 9,
+  },
+  price: {
+    color: '#D8B779',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  favoriteButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#40372B',
+    gap: 7,
+  },
+  heart: {
+    color: '#C78368',
+    fontSize: 17,
+  },
+  removeText: {
+    color: '#D8C6A3',
+    fontSize: 12,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingBottom: 70,
+  },
+  emptyIcon: {
+    color: '#A98248',
+    fontSize: 65,
+    marginBottom: 15,
+  },
+  emptyTitle: {
+    color: '#F3EFE7',
+    fontSize: 21,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  emptyDescription: {
+    color: '#B9B1A4',
+    fontSize: 14,
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 25,
+  },
+  catalogButton: {
+    backgroundColor: '#A98248',
+    paddingVertical: 14,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+  },
+  catalogButtonText: {
+    color: '#171614',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
 });

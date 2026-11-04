@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext } from 'react';
 
 const AppContext = createContext({});
@@ -7,31 +8,52 @@ export const AppProvider = ({ children }) => {
   const [messages, setMessages] = useState({});
   const [favorites, setFavorites] = useState([]);
 
-  // Alternar obra nos favoritos
+  const [profile, setProfile] = useState({
+    nome: '',
+    email: '',
+    telefone: '',
+    cpf: '',
+    cep: '',
+    endereco: '',
+    numero: '',
+    complemento: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+  });
+
+  const updateProfile = (newData) => {
+    setProfile((prev) => ({ ...prev, ...newData }));
+  };
+
   const toggleFavorite = (artwork) => {
     setFavorites((prev) => {
       const exists = prev.some((item) => item.id === artwork.id);
+
       if (exists) {
         return prev.filter((item) => item.id !== artwork.id);
       }
+
       return [...prev, artwork];
     });
   };
 
-  // Verificar se a obra está favoritada
   const isFavorite = (id) => {
     return favorites.some((item) => item.id === id);
   };
 
-  // Funções do Carrinho
   const addToCart = (artwork) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === artwork.id);
+
       if (existing) {
         return prev.map((item) =>
-          item.id === artwork.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === artwork.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       }
+
       return [...prev, { ...artwork, quantity: 1 }];
     });
   };
@@ -47,6 +69,7 @@ export const AppProvider = ({ children }) => {
           const newQty = item.quantity + delta;
           return newQty > 0 ? { ...item, quantity: newQty } : item;
         }
+
         return item;
       })
     );
@@ -61,7 +84,14 @@ export const AppProvider = ({ children }) => {
   const sendMessage = (artworkId, text) => {
     setMessages((prev) => ({
       ...prev,
-      [artworkId]: [...(prev[artworkId] || []), { id: Date.now().toString(), text, sender: 'user' }]
+      [artworkId]: [
+        ...(prev[artworkId] || []),
+        {
+          id: Date.now().toString(),
+          text,
+          sender: 'user',
+        },
+      ],
     }));
   };
 
@@ -79,6 +109,8 @@ export const AppProvider = ({ children }) => {
         favorites,
         toggleFavorite,
         isFavorite,
+        profile,
+        updateProfile,
       }}
     >
       {children}
